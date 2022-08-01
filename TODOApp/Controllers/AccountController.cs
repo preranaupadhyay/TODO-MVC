@@ -44,13 +44,61 @@ namespace TODOApp.Controllers
             }
             return View(obj);
         }
-        public ViewResult Edit()
+        public IActionResult Edit(int? id)
+
         {
-            return View();
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Todo.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
         }
-        public ViewResult Delete()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditPost(Todo obj)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _db.Todo.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Dashboard");
+            }
+            return View(obj);
+        }
+
+        public IActionResult Delete(int? id) 
+
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Todo.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var obj = _db.Todo.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.Todo.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Dashboard");
         }
 
         public ViewResult Contact()
