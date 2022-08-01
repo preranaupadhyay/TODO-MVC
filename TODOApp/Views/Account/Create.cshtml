@@ -1,26 +1,25 @@
-﻿ @{
-    ViewData["Title"] = "Create your todo list";
-}
+﻿@model Todo
+
 <div class="row justify-content-md-center">
-    <div class="col-6">
+    <div class="col-6"> 
         <div class="card">
             <div class="card-body">
                 <h3>Create your todo list</h3>
                 <hr/>
-                <from method="post">
+                <form method="post" asp-action="CreatePost">
                     <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Task</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="example...to pay bill">
+  <label for="exampleFormControlInput1" class="form-label" asp-for="Title">Task</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="example...to pay bill" asp-for="Title">
 </div>
 
 <div class="mb-3">
-  <label for="pass1" class="form-label">Description</label>
- <textarea class="form-control"  id="floatingTextarea2" style="height: 100px"></textarea>
+  <label for="pass1" class="form-label" asp-for="Description">Description</label>
+ <textarea class="form-control"  id="floatingTextarea2" style="height: 100px" asp-for="Description"></textarea>
 </div>
 
 <hr/>
 <button type="submit" class="btn-primary btn-primary">Create</button>
-                </from>
+                </form>
             </div>
         </div>
     </div>
