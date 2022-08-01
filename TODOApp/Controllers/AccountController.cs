@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TODOApp.Data;
 using TODOApp.Models;
 
 namespace TODOApp.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _db;
